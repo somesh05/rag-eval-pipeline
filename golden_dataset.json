@@ -1,0 +1,12 @@
+[
+  {
+    "question": "What is the main topic of the uploaded document?",
+    "ground_truth": "Replace this with the real answer based on YOUR sample documents.",
+    "source": "sample_doc_1.pdf"
+  },
+  {
+    "question": "Replace this with a real question about your sample documents.",
+    "ground_truth": "Replace this with the real, correct answer.",
+    "source": "sample_doc_1.pdf"
+  }
+]
