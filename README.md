@@ -12,10 +12,15 @@ Built with ChromaDB, sentence-transformers, Groq (Llama 3.3 70B), RAGAS, and Gra
 **Features**
 
 -Ingests PDF, TXT, or MD documents and splits them into overlapping chunks (500 chars, 50 overlap).
+
 -Embeds chunks locally with BAAI/bge-base-en-v1.5 (no API cost) and stores them in a persistent ChromaDB collection.
+
 -Retrieves with either pure vector search or a hybrid mode that blends vector similarity with BM25 keyword scoring (50/50 weighted fusion) — hybrid catches exact-match terms that dense embeddings alone can miss.
+
 -Generates grounded answers via Groq's Llama 3.3 70B, with a system prompt that explicitly tells the model to only use the retrieved context and admit when it doesn't know.
+
 -Evaluates the whole pipeline automatically: a fixed "golden dataset" of question/ground-truth pairs is run through retrieval + generation, then scored on faithfulness, answer relevancy, and context precision using RAGAS with Llama 3.1 8B as an LLM judge.
+
 -Exposes all of this through a two-tab Gradio app — a Chat tab for live Q&A, and an Evaluation Dashboard tab for running and comparing benchmark passes.
 
 **Tech Stack**
@@ -31,7 +36,9 @@ Secrets management                              python-dotenv
 **Document path:** 
 
 -**upload** → chunk & embed → store in Chroma + BM25 index.
+
 -**Query path**: ask a question → retrieve chunks (hybrid or vector) → generate a grounded answer via Groq.
+
 -**Evaluation path**: golden Q&A set → run through both paths above, in both retrieval modes → RAGAS scores each answer → dashboard shows per-question and averaged results.
 
 **How to Run Locally**
@@ -60,7 +67,9 @@ A golden dataset of question/ground-truth pairs is run through the pipeline twic
 ####  7. Limitations
 
 -The golden dataset is small by design (portfolio-scale); a production evaluation would want 50+ questions for tighter confidence intervals.
+
 -RAGAS's LLM-as-judge approach (Llama 3.1 8B here) introduces its own scoring variance, since the judge is itself an LLM rather than a ground-truth oracle.
+
 -The hybrid fusion weighting (0.5 vector / 0.5 BM25) is fixed, not tuned or learned.
 
 **Live Demo link** : 
