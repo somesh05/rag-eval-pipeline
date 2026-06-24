@@ -95,4 +95,4 @@ A golden dataset of question/ground-truth pairs is run through the pipeline twic
 - Add a re-ranking stage after initial retrieval.
 - Test retrieval performance as the document collection scales beyond a handful of files.
 
-**Live Demo Link:**
+**Live Demo Link:** https://huggingface.co/spaces/somesh05/rag-eval-pipeline
