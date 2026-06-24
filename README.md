@@ -7,7 +7,7 @@
 
 A document Q&A system that pairs hybrid retrieval (BM25 + vector search) with a built-in, automated evaluation harness (RAGAS), so changes to retrieval strategy, chunking, or prompting can be measured against a fixed benchmark instead of eyeballed by hand.
 
-Built with ChromaDB, sentence-transformers, Groq (Llama 3.3 70B), RAGAS, and Gradio. 
+Built with ChromaDB, sentence-transformers, Groq (Llama 3.1 8B for generation, GPT-OSS 120B as RAGAS judge), RAGAS, and Gradio.
 
 **Features**
 
@@ -19,19 +19,24 @@ Built with ChromaDB, sentence-transformers, Groq (Llama 3.3 70B), RAGAS, and Gra
 
 -Generates grounded answers via Groq's Llama 3.3 70B, with a system prompt that explicitly tells the model to only use the retrieved context and admit when it doesn't know.
 
--Evaluates the whole pipeline automatically: a fixed "golden dataset" of question/ground-truth pairs is run through retrieval + generation, then scored on faithfulness, answer relevancy, and context precision using RAGAS with Llama 3.1 8B as an LLM judge.
-
+-Evaluates the whole pipeline automatically: a fixed "golden dataset" of question/ground-truth pairs is run through retrieval + generation, then scored on faithfulness, answer relevancy, and context precision using RAGAS with openai/gpt-oss-120b as an LLM judge **(see CASE_STUDY.md for why this choice matters).
+**
 -Exposes all of this through a two-tab Gradio app — a Chat tab for live Q&A, and an Evaluation Dashboard tab for running and comparing benchmark passes.
 
 **Tech Stack**
 
-Embeddings                            BAAI/bge-base-en-v1.5 (local, CPU)
-Keyword retrieval                         rank_bm25 (BM25Okapi)
-Vector store                             ChromaDB (persistent, local)
-Generation                                    Llama 3.3 70B via Groq
-Evaluation                             RAGAS, Llama 3.1 8B as judge
-Interface                                          Gradio
-Secrets management                              python-dotenv
+Embeddings:                            BAAI/bge-base-en-v1.5 (local, CPU)
+
+Keyword retrieval:                         rank_bm25 (BM25Okapi)
+
+Vector store:                             ChromaDB (persistent, local)
+
+Generation:                              llama-3.1-8b-instant via Groq
+
+Evaluation:                             RAGAS, openai/gpt-oss-120b as judge
+
+Interface:                                          Gradio
+
 
 **Document path:** 
 
@@ -68,8 +73,18 @@ A golden dataset of question/ground-truth pairs is run through the pipeline twic
 
 -The golden dataset is small by design (portfolio-scale); a production evaluation would want 50+ questions for tighter confidence intervals.
 
--RAGAS's LLM-as-judge approach (Llama 3.1 8B here) introduces its own scoring variance, since the judge is itself an LLM rather than a ground-truth oracle.
+-RAGAS's LLM-as-judge approach is sensitive to the judge model's ability to follow structured output instructions, and this varies by metric. See CASE_STUDY.md section 4.1 for a documented case where two of three metrics remained unreliable even after switching to a stronger judge model.
 
 -The hybrid fusion weighting (0.5 vector / 0.5 BM25) is fixed, not tuned or learned.
+
+####  8. Limitations
+
+-Tune or learn the hybrid fusion weight instead of using a fixed 50/50 split.
+
+-Expand the golden dataset for tighter statistical confidence.
+
+-Add a re-ranking stage after initial retrieval.
+
+-Test retrieval performance as the document collection scales beyond a handful of files.
 
 **Live Demo link** : 
