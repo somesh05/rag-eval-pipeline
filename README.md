@@ -57,13 +57,11 @@ rag-eval-pipeline/
    ```bash
    pip install -r requirements.txt
    ```
-   > See [Known setup gotchas](#known-setup-gotchas) below before you do this — the unpinned dependency tree has a couple of sharp edges.
 
 3. **Add your Groq API key.** Create a `.env` file in the project root:
    ```
    GROQ_API_KEY=your_key_here
    ```
-   Get a free key at [console.groq.com](https://console.groq.com).
 
 4. **Run it**
    ```bash
@@ -79,31 +77,6 @@ rag-eval-pipeline/
 
 To get meaningful results, replace the placeholder entries in `golden_dataset.json` with real questions and ground-truth answers about your own sample documents.
 
-## Known setup gotchas
-
-`requirements.txt` currently has no version pins, which causes real problems because this dependency tree moves fast:
-
-- **`ragas` + `langchain-community`:** newer `ragas` releases still import a Vertex AI shim (`langchain_community.chat_models.vertexai`) that recent `langchain-community` releases removed. Pin `langchain-community<0.4.2`, and keep `langchain`/`langchain-core`/`langchain-text-splitters` on the same pre-1.0 generation, or pip's resolver will refuse to install a consistent set.
-- **Gradio's `Chatbot`:** the legacy tuple history format (`[[user, bot], ...]`) is removed as of Gradio 6.0 — only the `messages` format (`{"role": ..., "content": ...}` dicts) is supported, and the `type` parameter that used to toggle between them no longer exists.
-
-Recommended pins, added to `requirements.txt`:
-```
-gradio
-groq
-sentence-transformers
-chromadb
-rank_bm25
-langchain<1.0
-langchain-core<1.0
-langchain-text-splitters<1.0
-langchain-community<0.4.2
-langchain-groq
-ragas
-datasets
-pandas
-pypdf
-python-dotenv
-```
 
 ## Evaluation methodology
 
@@ -121,3 +94,5 @@ A golden dataset of question/ground-truth pairs is run through the pipeline twic
 - Expand the golden dataset for tighter statistical confidence.
 - Add a re-ranking stage after initial retrieval.
 - Test retrieval performance as the document collection scales beyond a handful of files.
+
+**Live Demo Link:**
