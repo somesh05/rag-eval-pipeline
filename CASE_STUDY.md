@@ -37,7 +37,7 @@ The hybrid approach in this system retrieves the top `2k` candidates from each m
 
 ### 3.1 Golden dataset construction
 
-A golden dataset of **[19]** question/ground-truth pairs was constructed manually from the sample documents, covering a mix of: direct factual lookups, questions requiring synthesis across multiple chunks, and at least **[3]** questions designed to be unanswerable from the provided documents, to test whether the system correctly declines rather than hallucinating.
+A golden dataset of **19** question/ground-truth pairs was constructed manually from the sample documents, covering a mix of: direct factual lookups, questions requiring synthesis across multiple chunks, and at least **3** questions designed to be unanswerable from the provided documents, to test whether the system correctly declines rather than hallucinating.
 
 ### 3.2 Metrics
 
