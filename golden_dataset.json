@@ -1,0 +1,79 @@
+
+[
+  {
+    "question": "What does CoRAG stand for, and what improvement does it achieve in Exact Match (EM) scores?",
+    "ground_truth": "CoRAG stands for Chain-of-Retrieval Augmented Generation. It introduces rejection sampling to generate intermediate retrieval chains and achieves a 10+ point improvement in Exact Match (EM) scores across knowledge-intensive benchmarks."
+  },
+  {
+    "question": "What is MetaRAG and what capability does it introduce?",
+    "ground_truth": "MetaRAG introduces metacognitive self-reflection, allowing models to dynamically evaluate and refine their retrieval performance before generation, including detecting inconsistent or incomplete retrieved knowledge and triggering additional retrieval cycles."
+  },
+  {
+    "question": "What are the two main techniques RA-RAG uses to improve retrieval trustworthiness?",
+    "ground_truth": "Weighted Majority Voting (WMV), which aggregates outputs from multiple sources based on trustworthiness and reliability scores, and Reliable and Relevant Source Selection (κ-RRSS), which dynamically filters sources based on content credibility and factual alignment."
+  },
+  {
+    "question": "According to the paper, what percentage of retrieval accuracy do privacy-enhanced federated retrieval systems maintain compared to centralized models?",
+    "ground_truth": "Federated retrieval systems maintain 85-90% of retrieval accuracy compared to centralized models, according to the benchmarks cited in the paper."
+  },
+  {
+    "question": "By what percentage does A-RAG outperform traditional RAG in complex multi-hop retrieval tasks, and by what percentage does it reduce hallucination errors?",
+    "ground_truth": "A-RAG (Agentic Retrieval-Augmented Generation) outperforms traditional RAG by 18% in complex multi-hop retrieval tasks, and reduces hallucination errors by 22% through cross-validating retrieved sources."
+  },
+  {
+    "question": "What three core components make up the RAG framework according to the paper's conceptual overview?",
+    "ground_truth": "The three core components are the Retriever (searches for relevant external knowledge), the Generator (produces a coherent response grounded in retrieved evidence), and Indexing Mechanisms (such as vector databases and knowledge graphs)."
+  },
+  {
+    "question": "What vector databases does the paper mention as examples of indexing mechanisms?",
+    "ground_truth": "The paper mentions FAISS and Pinecone as examples of vector databases that store dense embeddings for efficient search."
+  },
+  {
+    "question": "What is VideoRAG designed to do?",
+    "ground_truth": "VideoRAG extends Retrieval-Augmented Generation to multimodal, long-context video. It uses scene-specific retrieval to pull contextually relevant segments from long-form videos and multi-modal indexing across video, audio, and subtitles to enable video summarization and question-answering."
+  },
+  {
+    "question": "What improvement in query relevance and what reduction in retrieval latency does Personalized RAG (P-RAG) achieve, according to the paper?",
+    "ground_truth": "Personalized RAG improves query relevance by 32% in real-world AI deployments and reduces retrieval latency by 27% by prioritizing familiar sources over exploratory retrievals."
+  },
+  {
+    "question": "What does LA-RAG stand for and what is its primary application?",
+    "ground_truth": "LA-RAG stands for Language-Audio RAG. It enhances Automatic Speech Recognition (ASR) and conversational AI through fine-grained, token-level speech retrieval and context-aware speech processing."
+  },
+  {
+    "question": "Compare the main advantage and limitation of fine-tuning versus RAG as described in the paper.",
+    "ground_truth": "Fine-tuning offers high accuracy for specialized domains and a consistent output style since knowledge is internalized, but requires expensive, time-consuming retraining whenever new information becomes available. RAG offers real-time knowledge retrieval and better scalability across multiple domains, but has higher latency due to retrieval overhead and is more susceptible to retrieval errors and irrelevant context injection."
+  },
+  {
+    "question": "What hybrid approach does the paper suggest combines the strengths of both fine-tuning and RAG, and what example does it give?",
+    "ground_truth": "The paper describes a hybrid approach combining fine-tuning for domain adaptation with retrieval-based augmentation for real-time updates. It gives Self-Route RAG as an example, which dynamically chooses between retrieving external knowledge or relying on internal model memory depending on query complexity, reducing hallucination risk while keeping the model's memory lightweight."
+  },
+  {
+    "question": "How does the paper connect Neuro-Symbolic AI integration with RAG's hallucination problem, and what improvement does it report?",
+    "ground_truth": "The paper explains that LLMs excel at pattern recognition but struggle with explicit logical reasoning. Integrating Neuro-Symbolic AI lets RAG models convert retrieved knowledge into structured symbolic graphs and use logic-driven verification to check AI-generated claims, reducing factual inconsistencies by 30% compared to standard RAG pipelines."
+  },
+  {
+    "question": "What role do Reasoning Agents play within a Multi-Agent RAG (MARAG) pipeline, and how does this differ from the role of Validation Agents?",
+    "ground_truth": "Reasoning Agents apply multi-step reasoning (for example, using OpenAI's o1/o3 models) to synthesize retrieved information, while Validation Agents instead assess the relevance, reliability, and recency of the retrieved documents themselves. One focuses on reasoning over the evidence, the other on vetting the evidence before it's used."
+  },
+  {
+    "question": "What retrieval challenge does the paper say arises when integrating RAG with OpenAI's o1/o3 reasoning models, and what solution does it propose?",
+    "ground_truth": "Standard RAG systems retrieve all documents in a single step, but o1/o3 models perform multi-step reasoning requiring retrieval at different reasoning stages, causing misalignment. The paper proposes iterative or progressive retrieval pipelines (such as CoRAG) and reinforcement learning for retrieval timing as solutions."
+  },
+  {
+    "question": "Name two of the evaluation metrics described in the paper for assessing RAG performance beyond traditional Recall@K and Exact Match, and explain what each measures.",
+    "ground_truth": "FActScore measures factual consistency between retrieved documents and the generated answer. RA-RAG's Reliability-Weighted Precision (RWP) assigns higher scores to responses that cite reliable sources, accounting for source trustworthiness rather than just topical relevance."
+  },
+  {
+    "question": "How does this paper say RAG performance compares against GPT-5's native context window capabilities?",
+    "ground_truth": "This document does not mention GPT-5 or compare RAG against any GPT-5 context window capabilities. This question is unanswerable from the provided content, and the system should state that rather than guessing."
+  },
+  {
+    "question": "What specific cloud hosting costs does the paper report for running a production RAG deployment on AWS?",
+    "ground_truth": "The document does not report any specific cloud hosting costs or AWS pricing figures. This question is unanswerable from the provided content, and the system should state that rather than guessing."
+  },
+  {
+    "question": "According to the paper, what was Anand Ramachandran's institutional affiliation when writing this article?",
+    "ground_truth": "The document does not state the author's institutional affiliation anywhere in the text. This question is unanswerable from the provided content, and the system should state that rather than guessing."
+  }
+]
