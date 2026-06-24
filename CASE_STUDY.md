@@ -2,7 +2,6 @@
 
 *A hybrid retrieval & automated evaluation case study for [rag-eval-pipeline](./README.md).*
 
-> **Status:** complete. Context Precision is a validated finding. Faithfulness and Answer Relevancy are reported but explicitly flagged as unreliable (documented in sections 4.1, 4.2, and 5) — this is an intentional, honest part of the write-up, not a placeholder.
 
 ## Abstract
 
@@ -38,7 +37,7 @@ The hybrid approach in this system retrieves the top `2k` candidates from each m
 
 ### 3.1 Golden dataset construction
 
-A golden dataset of **[INSERT: e.g. 20]** question/ground-truth pairs was constructed manually from the sample documents, covering a mix of: direct factual lookups, questions requiring synthesis across multiple chunks, and at least **[INSERT: e.g. 3]** questions designed to be unanswerable from the provided documents, to test whether the system correctly declines rather than hallucinating.
+A golden dataset of **[19]** question/ground-truth pairs was constructed manually from the sample documents, covering a mix of: direct factual lookups, questions requiring synthesis across multiple chunks, and at least **[3]** questions designed to be unanswerable from the provided documents, to test whether the system correctly declines rather than hallucinating.
 
 ### 3.2 Metrics
 
