@@ -10,7 +10,7 @@ load_dotenv()
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
  
-ANSWER_MODEL = "llama-3.3-70b-versatile"
+ANSWER_MODEL = "llama-3.1-8b-instant"
  
 SYSTEM_PROMPT = """You are a careful, precise assistant that answers questions \
 using ONLY the provided context. Follow these rules strictly:
