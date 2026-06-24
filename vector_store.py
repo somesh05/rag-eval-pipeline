@@ -39,6 +39,17 @@ class RAGVectorStore:
         self._rebuild_bm25_index()
         print(f"Added {len(chunks)} chunks to the vector store")
 
+    def clear(self):
+        """Delete every document from the vector store and reset the BM25 index."""
+        self.client.delete_collection(name="rag_documents")
+        self.collection = self.client.get_or_create_collection(
+            name="rag_documents",
+            metadata={"hnsw:space": "cosine"},
+        )
+        self.bm25 = None
+        self.bm25_corpus_ids = []
+        self.bm25_corpus_texts = []
+
     def _rebuild_bm25_index(self):
         """Pull the full corpus back out of Chroma and rebuild the BM25 index."""
         all_data = self.collection.get(include=["documents"])
